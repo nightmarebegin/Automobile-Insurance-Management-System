@@ -35,7 +35,6 @@ CREATE TABLE [dbo].[PaymentDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 
-Insert into USERS values('admin','voonapranayraj@gmail.com','admin','M','Pkd',7008439239,3,GETDATE());
+Insert into USERS values('admin','admin@admin.com','admin','M','Password',0008430239,3,GETDATE());
 
 
-Server=tcp:vivek1939.database.windows.net,1433;Initial Catalog=IMS;Persist Security Info=False;User ID=IMS;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
