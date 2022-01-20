@@ -1,0 +1,41 @@
+
+CREATE TABLE ROLES ( Id tinyint identity(1,1) primary key, Name Varchar(40), CreatedDate Date, );
+INSERT INTO ROLES VALUES ('CUSTOMER',GETDATE());
+CREATE TABLE USERS ( Id int identity(1001,1) primary key, Name varchar(40), Email varchar(50), Password varchar(20), Gender char(1), Address varchar(300), PhoneNumber bigint, RoleId tinyint FOREIGN KEY REFERENCES ROLES(Id), CreatedDate Date, )
+CREATE TABLE AutomobileCategories ( Id tinyint primary key identity(1,1), Name Varchar(20), CreatedDate Datetime, )
+INSERT INTO AutomobileCategories VALUES ('Two Wheeler',GETDATE());
+CREATE TABLE Policies( Id int primary key identity(100,1), CategoryId tinyint , Name varchar(50), Description varchar(200), DurationInMonths int, PremiumAmount float, CreatedDate Datetime, )
+CREATE TABLE CustomerAgent ( Id int primary key identity(1,1),
+AgentId int FOREIGN KEY REFERENCES USERS(Id), UserId int FOREIGN KEY REFERENCES USERS(Id), CreatedDate Datetime, )
+CREATE TABLE Feedback ( Id int primary key identity(1,1), Email Varchar(50), Message Varchar(MAX), CreatedDate Datetime, )
+CREATE TABLE Complaints ( Id int primary key identity(1,1), Message Varchar(Max), CreatedDate Datetime, UserId int FOREIGN KEY REFERENCES USERS(Id), )
+CREATE TABLE PolicyCategories ( Id int primary key identity(1,1), Name varchar(20), CreatedDate Datetime )
+CREATE TABLE BuyPolicies ( Id int primary key identity(1,1), UserId int FOREIGN KEY REFERENCES USERS(Id), PolicyId int FOREIGN KEY REFERENCES Policies(Id), PolicyCategoryId int FOREIGN KEY REFERENCES PolicyCategories(Id), AmountPaid float, RequiredDocument varchar(200), CreatedDate DateTime, UpdatedDate DateTime, )
+CREATE TABLE PoliciesStatus ( Id int primary key identity(1,1), status varchar(20), CreatedDate Datetime, )
+CREATE TABLE PoliciesClaims( Id int primary key identity(1,1),
+UserId int FOREIGN KEY REFERENCES USERS(Id), PolicyId int FOREIGN KEY REFERENCES Policies(Id), ClaimAmount float, RequiredDocuments varchar(200), ClaimStatusID int FOREIGN KEY REFERENCES PoliciesStatus(Id), Reason Varchar(100), CreatedDate Datetime, )
+CREATE TABLE PoliciesTransaction ( Id int primary key identity(1,1), UserId int FOREIGN KEY REFERENCES USERS(Id), PolicyId int FOREIGN KEY REFERENCES Policies(Id), Amount float, ActualPremiumDate Datetime, ActualPaymentDate Datetime, )
+INSERT INTO ROLES VALUES ('AGENT',GETDATE()); 
+INSERT INTO ROLES VALUES ('ADMIN',GETDATE()); 
+INSERT INTO AutomobileCategories VALUES ('Four Wheeler',GETDATE()); 
+INSERT INTO PolicyCategories VALUES ('Two Wheeler',GETDATE()); 
+INSERT INTO PolicyCategories VALUES ('Four Wheeler',GETDATE());
+CREATE TABLE [dbo].[PaymentDetails](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [int] NOT NULL,
+	[PolicyId] [int] NOT NULL,
+	[carNumber] [bigint] NULL,
+	[expiryMonth] [smallint] NULL,
+	[expiryYear] [smallint] NULL,
+	[securityCode] [smallint] NULL,
+	[createdDate] [datetime] NULL,
+ CONSTRAINT [PK_PaymentDetails] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+Insert into USERS values('admin','voonapranayraj@gmail.com','admin','M','Pkd',7008439239,3,GETDATE());
+
+
+Server=tcp:vivek1939.database.windows.net,1433;Initial Catalog=IMS;Persist Security Info=False;User ID=IMS;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;

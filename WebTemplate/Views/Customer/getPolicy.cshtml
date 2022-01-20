@@ -1,0 +1,53 @@
+﻿@model List<WebTemplate.Models.Policy>
+@{
+    ViewBag.Title = "getPolicy";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+@if (@Session["Success"] != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@Session["Success"]");
+            };
+    </script>
+    Session.Remove("Success");
+
+}
+<script type="text/javascript">
+    function DisableBackButton() {
+        window.history.forward();
+    }
+    setTimeout("DisableBackButton()", 0);
+    window.onunload = function () {
+        null
+    };
+</script>
+<div class="w3_pvt-works pt-sm-5 pt-4" id="services">
+    <div class="container py-lg-5">
+        <div class="sec-main text-center pb-lg-4 pb-4">
+
+            <h4 class="w3pvt-title">
+                Buy Policies
+            </h4>
+        </div>
+        <div class="row space-sec pt-4 mt-lg-5">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-sm-6 text-center">
+                    <div class="ih-item circle info_circle_icon d-flex align-items-center justify-content-center bg-theme">
+                        <span class="fa fa-adjust bg-theme " aria-hidden="true"></span>
+                    </div>
+                    <div class="ih-item-desc">
+                        <h4 class="item-title">@item.Name</h4>
+                        <p>@item.Description</p>
+
+                        @Html.ActionLink("View More", "getPolicyDetails", new { Id = item.Id }, new { @class = "btn mt-4 w3_pvt-link-bnr scroll bg-theme1 text-white more" })
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>

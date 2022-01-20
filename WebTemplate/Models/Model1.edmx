@@ -1,0 +1,864 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AutomobileCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BuyPolicies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="PolicyId" Type="int" />
+          <Property Name="PolicyCategoryId" Type="int" />
+          <Property Name="AmountPaid" Type="float" />
+          <Property Name="RequiredDocument" Type="varchar" MaxLength="200" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Complaints">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="CustomerAgent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Message" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PaymentDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PolicyId" Type="int" Nullable="false" />
+          <Property Name="carNumber" Type="bigint" />
+          <Property Name="expiryMonth" Type="smallint" />
+          <Property Name="expiryYear" Type="smallint" />
+          <Property Name="securityCode" Type="smallint" />
+          <Property Name="createdDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Policies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="tinyint" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+          <Property Name="DurationInMonths" Type="int" />
+          <Property Name="PremiumAmount" Type="float" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PoliciesClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="PolicyId" Type="int" />
+          <Property Name="ClaimAmount" Type="float" />
+          <Property Name="RequiredDocuments" Type="varchar" MaxLength="200" />
+          <Property Name="ClaimStatusID" Type="int" />
+          <Property Name="Reason" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PoliciesStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PoliciesTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="PolicyId" Type="int" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="ActualPremiumDate" Type="datetime" />
+          <Property Name="ActualPaymentDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PolicyCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ROLES">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="40" />
+          <Property Name="CreatedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="40" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="Gender" Type="char" MaxLength="1" />
+          <Property Name="Address" Type="varchar" MaxLength="300" />
+          <Property Name="PhoneNumber" Type="bigint" />
+          <Property Name="RoleId" Type="tinyint" />
+          <Property Name="CreatedDate" Type="date" />
+        </EntityType>
+        <Association Name="FK__BuyPolici__Polic__4316F928">
+          <End Role="Policies" Type="Self.Policies" Multiplicity="0..1" />
+          <End Role="BuyPolicies" Type="Self.BuyPolicies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BuyPolicies">
+              <PropertyRef Name="PolicyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BuyPolici__Polic__440B1D61">
+          <End Role="PolicyCategories" Type="Self.PolicyCategories" Multiplicity="0..1" />
+          <End Role="BuyPolicies" Type="Self.BuyPolicies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PolicyCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BuyPolicies">
+              <PropertyRef Name="PolicyCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BuyPolici__UserI__4222D4EF">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="BuyPolicies" Type="Self.BuyPolicies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BuyPolicies">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Complaint__UserI__3D5E1FD2">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="Complaints" Type="Self.Complaints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Complaints">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerA__Agent__37A5467C">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="CustomerAgent" Type="Self.CustomerAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerAgent">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerA__UserI__38996AB5">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="CustomerAgent" Type="Self.CustomerAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerAgent">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PoliciesC__Claim__4AB81AF0">
+          <End Role="PoliciesStatus" Type="Self.PoliciesStatus" Multiplicity="0..1" />
+          <End Role="PoliciesClaims" Type="Self.PoliciesClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PoliciesStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PoliciesClaims">
+              <PropertyRef Name="ClaimStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PoliciesC__Polic__49C3F6B7">
+          <End Role="Policies" Type="Self.Policies" Multiplicity="0..1" />
+          <End Role="PoliciesClaims" Type="Self.PoliciesClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PoliciesClaims">
+              <PropertyRef Name="PolicyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PoliciesC__UserI__48CFD27E">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="PoliciesClaims" Type="Self.PoliciesClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PoliciesClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PoliciesT__Polic__4E88ABD4">
+          <End Role="Policies" Type="Self.Policies" Multiplicity="0..1" />
+          <End Role="PoliciesTransaction" Type="Self.PoliciesTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PoliciesTransaction">
+              <PropertyRef Name="PolicyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PoliciesT__UserI__4D94879B">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="PoliciesTransaction" Type="Self.PoliciesTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PoliciesTransaction">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IMSModelStoreContainer">
+          <EntitySet Name="AutomobileCategories" EntityType="Self.AutomobileCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuyPolicies" EntityType="Self.BuyPolicies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Complaints" EntityType="Self.Complaints" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerAgent" EntityType="Self.CustomerAgent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentDetails" EntityType="Self.PaymentDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Policies" EntityType="Self.Policies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PoliciesClaims" EntityType="Self.PoliciesClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PoliciesStatus" EntityType="Self.PoliciesStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PoliciesTransaction" EntityType="Self.PoliciesTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PolicyCategories" EntityType="Self.PolicyCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLES" EntityType="Self.ROLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BuyPolici__Polic__4316F928" Association="Self.FK__BuyPolici__Polic__4316F928">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="BuyPolicies" EntitySet="BuyPolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BuyPolici__Polic__440B1D61" Association="Self.FK__BuyPolici__Polic__440B1D61">
+            <End Role="PolicyCategories" EntitySet="PolicyCategories" />
+            <End Role="BuyPolicies" EntitySet="BuyPolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BuyPolici__UserI__4222D4EF" Association="Self.FK__BuyPolici__UserI__4222D4EF">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="BuyPolicies" EntitySet="BuyPolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Complaint__UserI__3D5E1FD2" Association="Self.FK__Complaint__UserI__3D5E1FD2">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="Complaints" EntitySet="Complaints" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerA__Agent__37A5467C" Association="Self.FK__CustomerA__Agent__37A5467C">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="CustomerAgent" EntitySet="CustomerAgent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerA__UserI__38996AB5" Association="Self.FK__CustomerA__UserI__38996AB5">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="CustomerAgent" EntitySet="CustomerAgent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PoliciesC__Claim__4AB81AF0" Association="Self.FK__PoliciesC__Claim__4AB81AF0">
+            <End Role="PoliciesStatus" EntitySet="PoliciesStatus" />
+            <End Role="PoliciesClaims" EntitySet="PoliciesClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PoliciesC__Polic__49C3F6B7" Association="Self.FK__PoliciesC__Polic__49C3F6B7">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="PoliciesClaims" EntitySet="PoliciesClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PoliciesC__UserI__48CFD27E" Association="Self.FK__PoliciesC__UserI__48CFD27E">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PoliciesClaims" EntitySet="PoliciesClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PoliciesT__Polic__4E88ABD4" Association="Self.FK__PoliciesT__Polic__4E88ABD4">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="PoliciesTransaction" EntitySet="PoliciesTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PoliciesT__UserI__4D94879B" Association="Self.FK__PoliciesT__UserI__4D94879B">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PoliciesTransaction" EntitySet="PoliciesTransaction" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AutomobileCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BuyPolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="PolicyId" Type="Int32" />
+          <Property Name="PolicyCategoryId" Type="Int32" />
+          <Property Name="AmountPaid" Type="Double" />
+          <Property Name="RequiredDocument" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Policy" Relationship="Self.FK__BuyPolici__Polic__4316F928" FromRole="BuyPolicies" ToRole="Policies" />
+          <NavigationProperty Name="PolicyCategory" Relationship="Self.FK__BuyPolici__Polic__440B1D61" FromRole="BuyPolicies" ToRole="PolicyCategories" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__BuyPolici__UserI__4222D4EF" FromRole="BuyPolicies" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="Complaint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__Complaint__UserI__3D5E1FD2" FromRole="Complaints" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="CustomerAgent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__CustomerA__Agent__37A5467C" FromRole="CustomerAgent" ToRole="USERS" />
+          <NavigationProperty Name="USER1" Relationship="Self.FK__CustomerA__UserI__38996AB5" FromRole="CustomerAgent" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PaymentDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="PolicyId" Type="Int32" Nullable="false" />
+          <Property Name="carNumber" Type="Int64" />
+          <Property Name="expiryMonth" Type="Int16" />
+          <Property Name="expiryYear" Type="Int16" />
+          <Property Name="securityCode" Type="Int16" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Policy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Byte" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DurationInMonths" Type="Int32" />
+          <Property Name="PremiumAmount" Type="Double" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BuyPolicies" Relationship="Self.FK__BuyPolici__Polic__4316F928" FromRole="Policies" ToRole="BuyPolicies" />
+          <NavigationProperty Name="PoliciesClaims" Relationship="Self.FK__PoliciesC__Polic__49C3F6B7" FromRole="Policies" ToRole="PoliciesClaims" />
+          <NavigationProperty Name="PoliciesTransactions" Relationship="Self.FK__PoliciesT__Polic__4E88ABD4" FromRole="Policies" ToRole="PoliciesTransaction" />
+        </EntityType>
+        <EntityType Name="PoliciesClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="PolicyId" Type="Int32" />
+          <Property Name="ClaimAmount" Type="Double" />
+          <Property Name="RequiredDocuments" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ClaimStatusID" Type="Int32" />
+          <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Policy" Relationship="Self.FK__PoliciesC__Polic__49C3F6B7" FromRole="PoliciesClaims" ToRole="Policies" />
+          <NavigationProperty Name="PoliciesStatu" Relationship="Self.FK__PoliciesC__Claim__4AB81AF0" FromRole="PoliciesClaims" ToRole="PoliciesStatus" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__PoliciesC__UserI__48CFD27E" FromRole="PoliciesClaims" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="PoliciesStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PoliciesClaims" Relationship="Self.FK__PoliciesC__Claim__4AB81AF0" FromRole="PoliciesStatus" ToRole="PoliciesClaims" />
+        </EntityType>
+        <EntityType Name="PoliciesTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="PolicyId" Type="Int32" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="ActualPremiumDate" Type="DateTime" Precision="3" />
+          <Property Name="ActualPaymentDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Policy" Relationship="Self.FK__PoliciesT__Polic__4E88ABD4" FromRole="PoliciesTransaction" ToRole="Policies" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__PoliciesT__UserI__4D94879B" FromRole="PoliciesTransaction" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="PolicyCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BuyPolicies" Relationship="Self.FK__BuyPolici__Polic__440B1D61" FromRole="PolicyCategories" ToRole="BuyPolicies" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="Int64" />
+          <Property Name="RoleId" Type="Byte" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="BuyPolicies" Relationship="Self.FK__BuyPolici__UserI__4222D4EF" FromRole="USERS" ToRole="BuyPolicies" />
+          <NavigationProperty Name="Complaints" Relationship="Self.FK__Complaint__UserI__3D5E1FD2" FromRole="USERS" ToRole="Complaints" />
+          <NavigationProperty Name="CustomerAgents" Relationship="Self.FK__CustomerA__Agent__37A5467C" FromRole="USERS" ToRole="CustomerAgent" />
+          <NavigationProperty Name="CustomerAgents1" Relationship="Self.FK__CustomerA__UserI__38996AB5" FromRole="USERS" ToRole="CustomerAgent" />
+          <NavigationProperty Name="PoliciesClaims" Relationship="Self.FK__PoliciesC__UserI__48CFD27E" FromRole="USERS" ToRole="PoliciesClaims" />
+          <NavigationProperty Name="PoliciesTransactions" Relationship="Self.FK__PoliciesT__UserI__4D94879B" FromRole="USERS" ToRole="PoliciesTransaction" />
+        </EntityType>
+        <Association Name="FK__BuyPolici__Polic__4316F928">
+          <End Role="Policies" Type="Self.Policy" Multiplicity="0..1" />
+          <End Role="BuyPolicies" Type="Self.BuyPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BuyPolicies">
+              <PropertyRef Name="PolicyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BuyPolici__Polic__440B1D61">
+          <End Role="PolicyCategories" Type="Self.PolicyCategory" Multiplicity="0..1" />
+          <End Role="BuyPolicies" Type="Self.BuyPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PolicyCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BuyPolicies">
+              <PropertyRef Name="PolicyCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BuyPolici__UserI__4222D4EF">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="BuyPolicies" Type="Self.BuyPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BuyPolicies">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Complaint__UserI__3D5E1FD2">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="Complaints" Type="Self.Complaint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Complaints">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerA__Agent__37A5467C">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="CustomerAgent" Type="Self.CustomerAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerAgent">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerA__UserI__38996AB5">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="CustomerAgent" Type="Self.CustomerAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerAgent">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PoliciesC__Polic__49C3F6B7">
+          <End Role="Policies" Type="Self.Policy" Multiplicity="0..1" />
+          <End Role="PoliciesClaims" Type="Self.PoliciesClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PoliciesClaims">
+              <PropertyRef Name="PolicyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PoliciesT__Polic__4E88ABD4">
+          <End Role="Policies" Type="Self.Policy" Multiplicity="0..1" />
+          <End Role="PoliciesTransaction" Type="Self.PoliciesTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Policies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PoliciesTransaction">
+              <PropertyRef Name="PolicyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PoliciesC__Claim__4AB81AF0">
+          <End Role="PoliciesStatus" Type="Self.PoliciesStatu" Multiplicity="0..1" />
+          <End Role="PoliciesClaims" Type="Self.PoliciesClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PoliciesStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PoliciesClaims">
+              <PropertyRef Name="ClaimStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PoliciesC__UserI__48CFD27E">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="PoliciesClaims" Type="Self.PoliciesClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PoliciesClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PoliciesT__UserI__4D94879B">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="PoliciesTransaction" Type="Self.PoliciesTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PoliciesTransaction">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IMSEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AutomobileCategories" EntityType="Self.AutomobileCategory" />
+          <EntitySet Name="BuyPolicies" EntityType="Self.BuyPolicy" />
+          <EntitySet Name="Complaints" EntityType="Self.Complaint" />
+          <EntitySet Name="CustomerAgents" EntityType="Self.CustomerAgent" />
+          <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+          <EntitySet Name="PaymentDetails" EntityType="Self.PaymentDetail" />
+          <EntitySet Name="Policies" EntityType="Self.Policy" />
+          <EntitySet Name="PoliciesClaims" EntityType="Self.PoliciesClaim" />
+          <EntitySet Name="PoliciesStatus" EntityType="Self.PoliciesStatu" />
+          <EntitySet Name="PoliciesTransactions" EntityType="Self.PoliciesTransaction" />
+          <EntitySet Name="PolicyCategories" EntityType="Self.PolicyCategory" />
+          <EntitySet Name="ROLES" EntityType="Self.ROLE" />
+          <EntitySet Name="USERS" EntityType="Self.USER" />
+          <AssociationSet Name="FK__BuyPolici__Polic__4316F928" Association="Self.FK__BuyPolici__Polic__4316F928">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="BuyPolicies" EntitySet="BuyPolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BuyPolici__Polic__440B1D61" Association="Self.FK__BuyPolici__Polic__440B1D61">
+            <End Role="PolicyCategories" EntitySet="PolicyCategories" />
+            <End Role="BuyPolicies" EntitySet="BuyPolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BuyPolici__UserI__4222D4EF" Association="Self.FK__BuyPolici__UserI__4222D4EF">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="BuyPolicies" EntitySet="BuyPolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Complaint__UserI__3D5E1FD2" Association="Self.FK__Complaint__UserI__3D5E1FD2">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="Complaints" EntitySet="Complaints" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerA__Agent__37A5467C" Association="Self.FK__CustomerA__Agent__37A5467C">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="CustomerAgent" EntitySet="CustomerAgents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerA__UserI__38996AB5" Association="Self.FK__CustomerA__UserI__38996AB5">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="CustomerAgent" EntitySet="CustomerAgents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PoliciesC__Polic__49C3F6B7" Association="Self.FK__PoliciesC__Polic__49C3F6B7">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="PoliciesClaims" EntitySet="PoliciesClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PoliciesT__Polic__4E88ABD4" Association="Self.FK__PoliciesT__Polic__4E88ABD4">
+            <End Role="Policies" EntitySet="Policies" />
+            <End Role="PoliciesTransaction" EntitySet="PoliciesTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PoliciesC__Claim__4AB81AF0" Association="Self.FK__PoliciesC__Claim__4AB81AF0">
+            <End Role="PoliciesStatus" EntitySet="PoliciesStatus" />
+            <End Role="PoliciesClaims" EntitySet="PoliciesClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PoliciesC__UserI__48CFD27E" Association="Self.FK__PoliciesC__UserI__48CFD27E">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PoliciesClaims" EntitySet="PoliciesClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PoliciesT__UserI__4D94879B" Association="Self.FK__PoliciesT__UserI__4D94879B">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PoliciesTransaction" EntitySet="PoliciesTransactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IMSModelStoreContainer" CdmEntityContainer="IMSEntities1">
+          <EntitySetMapping Name="AutomobileCategories">
+            <EntityTypeMapping TypeName="IMSModel.AutomobileCategory">
+              <MappingFragment StoreEntitySet="AutomobileCategories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuyPolicies">
+            <EntityTypeMapping TypeName="IMSModel.BuyPolicy">
+              <MappingFragment StoreEntitySet="BuyPolicies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PolicyId" ColumnName="PolicyId" />
+                <ScalarProperty Name="PolicyCategoryId" ColumnName="PolicyCategoryId" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="RequiredDocument" ColumnName="RequiredDocument" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Complaints">
+            <EntityTypeMapping TypeName="IMSModel.Complaint">
+              <MappingFragment StoreEntitySet="Complaints">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerAgents">
+            <EntityTypeMapping TypeName="IMSModel.CustomerAgent">
+              <MappingFragment StoreEntitySet="CustomerAgent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="IMSModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentDetails">
+            <EntityTypeMapping TypeName="IMSModel.PaymentDetail">
+              <MappingFragment StoreEntitySet="PaymentDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PolicyId" ColumnName="PolicyId" />
+                <ScalarProperty Name="carNumber" ColumnName="carNumber" />
+                <ScalarProperty Name="expiryMonth" ColumnName="expiryMonth" />
+                <ScalarProperty Name="expiryYear" ColumnName="expiryYear" />
+                <ScalarProperty Name="securityCode" ColumnName="securityCode" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Policies">
+            <EntityTypeMapping TypeName="IMSModel.Policy">
+              <MappingFragment StoreEntitySet="Policies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DurationInMonths" ColumnName="DurationInMonths" />
+                <ScalarProperty Name="PremiumAmount" ColumnName="PremiumAmount" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PoliciesClaims">
+            <EntityTypeMapping TypeName="IMSModel.PoliciesClaim">
+              <MappingFragment StoreEntitySet="PoliciesClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PolicyId" ColumnName="PolicyId" />
+                <ScalarProperty Name="ClaimAmount" ColumnName="ClaimAmount" />
+                <ScalarProperty Name="RequiredDocuments" ColumnName="RequiredDocuments" />
+                <ScalarProperty Name="ClaimStatusID" ColumnName="ClaimStatusID" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PoliciesStatus">
+            <EntityTypeMapping TypeName="IMSModel.PoliciesStatu">
+              <MappingFragment StoreEntitySet="PoliciesStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PoliciesTransactions">
+            <EntityTypeMapping TypeName="IMSModel.PoliciesTransaction">
+              <MappingFragment StoreEntitySet="PoliciesTransaction">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PolicyId" ColumnName="PolicyId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ActualPremiumDate" ColumnName="ActualPremiumDate" />
+                <ScalarProperty Name="ActualPaymentDate" ColumnName="ActualPaymentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PolicyCategories">
+            <EntityTypeMapping TypeName="IMSModel.PolicyCategory">
+              <MappingFragment StoreEntitySet="PolicyCategories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLES">
+            <EntityTypeMapping TypeName="IMSModel.ROLE">
+              <MappingFragment StoreEntitySet="ROLES">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="IMSModel.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

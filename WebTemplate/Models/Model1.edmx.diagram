@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="12bfda301d364154abe3248fb4eea90b" Name="Diagram1">
+        <EntityTypeShape EntityType="IMSModel.AutomobileCategory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMSModel.BuyPolicy" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMSModel.Complaint" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMSModel.CustomerAgent" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMSModel.Feedback" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMSModel.PaymentDetail" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMSModel.Policy" Width="1.5" PointX="3.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMSModel.PoliciesClaim" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMSModel.PoliciesStatu" Width="1.5" PointX="3.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMSModel.PoliciesTransaction" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMSModel.PolicyCategory" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMSModel.ROLE" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMSModel.USER" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="IMSModel.FK__BuyPolici__Polic__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="IMSModel.FK__BuyPolici__Polic__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="IMSModel.FK__BuyPolici__UserI__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="IMSModel.FK__Complaint__UserI__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="IMSModel.FK__CustomerA__Agent__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="IMSModel.FK__CustomerA__UserI__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="IMSModel.FK__PoliciesC__Polic__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="IMSModel.FK__PoliciesT__Polic__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="IMSModel.FK__PoliciesC__Claim__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="IMSModel.FK__PoliciesC__UserI__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="IMSModel.FK__PoliciesT__UserI__4D94879B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

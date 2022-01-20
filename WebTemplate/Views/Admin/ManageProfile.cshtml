@@ -1,0 +1,273 @@
+﻿@model WebTemplate.Models.USER
+
+@{
+    ViewBag.Title = "ManageProfile";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@if (@Session["Success"] != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@Session["Success"]");
+            };
+    </script>
+    Session.Remove("Success");
+
+}
+<script type="text/javascript">
+    function DisableBackButton() {
+        window.history.forward();
+    }
+    setTimeout("DisableBackButton()", 0);
+    window.onunload = function () {
+        null
+    };
+</script>
+<style>
+
+
+    .card0 {
+        box-shadow: 0px 4px 8px 0px #757575;
+        border-radius: 0px
+    }
+
+    .card2 {
+        margin: 0px 40px
+    }
+
+    .logo {
+        width: 200px;
+        height: 100px;
+        margin-top: 20px;
+        margin-left: 35px
+    }
+
+    .image {
+        width: 360px;
+        height: 280px
+    }
+
+    .border-line {
+        border-right: 1px solid #EEEEEE
+    }
+
+    .facebook {
+        background-color: #3b5998;
+        color: #fff;
+        font-size: 18px;
+        padding-top: 5px;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        cursor: pointer
+    }
+
+    .twitter {
+        background-color: #1DA1F2;
+        color: #fff;
+        font-size: 18px;
+        padding-top: 5px;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        cursor: pointer
+    }
+
+    .linkedin {
+        background-color: #2867B2;
+        color: #fff;
+        font-size: 18px;
+        padding-top: 5px;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        cursor: pointer
+    }
+
+    .line {
+        height: 1px;
+        width: 42%;
+        background-color: #E0E0E0;
+        margin-top: 10px
+    }
+
+    .or {
+        width: 10%;
+        font-weight: bold
+    }
+
+    .text-sm {
+        font-size: 14px !important
+    }
+
+
+
+    input,
+    textarea {
+        padding: 10px 12px 10px 12px;
+        border: 1px solid lightgrey;
+        border-radius: 2px;
+        margin-bottom: 5px;
+        margin-top: 2px;
+        width: 100%;
+        box-sizing: border-box;
+        color: #2C3E50;
+        font-size: 14px;
+        letter-spacing: 1px
+    }
+
+        input:focus,
+        textarea:focus {
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            border: 1px solid #304FFE;
+            outline-width: 0
+        }
+
+    button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0
+    }
+
+    a {
+        color: inherit;
+        cursor: pointer
+    }
+
+    .btn-blue {
+        background-color: #1A237E;
+        width: 150px;
+        color: #fff;
+        border-radius: 2px
+    }
+
+        .btn-blue:hover {
+            background-color: #000;
+            cursor: pointer
+        }
+
+    .bg-blue {
+        color: #fff;
+        background-color: #1A237E
+    }
+</style>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+
+}
+<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+    <div class="card card0 border-0">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="row d-flex">
+
+
+
+
+
+
+                <div class="col-lg-12">
+                    <div class="card2 card border-0 px-4 py-5">
+                        @*<div class="row mb-4 px-3">
+                <h6 class="mb-0 mr-4 mt-2">Sign in with</h6>
+                <div class="facebook text-center mr-3">
+                    <div class="fa fa-facebook"></div>
+                </div>
+                <div class="twitter text-center mr-3">
+                    <div class="fa fa-twitter"></div>
+                </div>
+                <div class="linkedin text-center mr-3">
+                    <div class="fa fa-linkedin"></div>
+                </div>
+            </div>*@
+                        @Html.HiddenFor(x => x.Id)
+                        @Html.HiddenFor(x => x.RoleId)
+                        @Html.HiddenFor(x => x.CreatedDate)
+                        <div class="row px-3 mb-4">
+                            <div class="line"></div> <h3 class="text-center"><strong>Admin Profile</strong></h3>
+                            <div class="line"></div>
+                        </div>
+                        <div class="row px-3">
+                            <label class="mb-1">
+                                <h6 class="mb-0 text-sm">
+                                    Name
+                                    @Html.ValidationMessageFor(item => item.Name, "", new { @class = "text-danger" })
+
+                                </h6>
+                            </label> @Html.TextBoxFor(item => item.Name, new { @required = "required", @placeholder = "Enter Your Name", @class = "mb-4" })
+                        </div>
+
+                        <div class="row px-3">
+                            <label class="mb-1">
+                                <h6 class="mb-0 text-sm">Email Address</h6>
+                            </label> @Html.TextBoxFor(item => item.Email, new { @type = "email", @required = "required", @placeholder = "Enter a valid email address", @class = "mb-4" })
+                        </div>
+
+                        <div class="row px-3">
+                            <label class="mb-1">
+                                <h6 class="mb-0 text-sm">Password</h6>
+                            </label> @Html.PasswordFor(x => x.Password, new { @required = "required", @placeholder = "Enter a valid password", @class = "mb-4" })
+                        </div>
+                        <div class="row px-3">
+                            <label class="mb-1">
+                                <h6 class="mb-0 text-sm">Phone Number</h6>
+                            </label> @Html.TextBoxFor(x => x.PhoneNumber, new { @type = "tel", @pattern = "[0-9]{10}", @required = "required", @placeholder = "Enter your Phone Number", @class = "mb-4" })
+                        </div>
+
+                        <div class="row px-3">
+                            <label class="mb-1">
+                                <h6 class="mb-0 text-sm">Gender </h6>
+                            </label>
+                        </div>
+
+
+                        <div class="row grid-row">
+
+                            <div class="col-sm-3">
+                                @Html.RadioButtonFor(x => x.Gender, "M", new { @class = "mb-4" })
+                            </div>
+                            <div class="col-sm-3">
+                                <p>Male </p>
+                            </div>
+                            <div class="col-sm-3">
+                                @Html.RadioButtonFor(x => x.Gender, "F", new { @class = "mb-4" })
+                            </div>
+                            <div class="col-sm-3">
+                                <p>Female </p>
+                            </div>
+
+                        </div>
+
+                        <div class="row px-3">
+                            <label class="mb-1">
+                                <h6 class="mb-0 text-sm">Address</h6>
+                            </label> @Html.TextAreaFor(x => x.Address, new { @required = "required", @placeholder = "Enter your address", @class = "mb-4" })
+                        </div>
+
+                        <div class="row px-3 mb-4">
+                        </div>
+                        <div class="row mb-3 px-3">
+                            <input type="submit" value="Update Profile" class="btn btn-blue text-center" />
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+
+
+

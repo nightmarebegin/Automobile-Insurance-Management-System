@@ -1,0 +1,369 @@
+﻿@model WebTemplate.Models.Model.Feedback
+@{ Layout = null; }
+
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>AIMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    @*    <meta name="keywords" content="Water Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+        SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />*@
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Custom Theme files -->
+    <link href="~/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/css/style.css" type="text/css" rel="stylesheet" media="all">
+    <!-- navigation -->
+    <link href="~/css/nav.css" type="text/css" rel="stylesheet" media="all">
+    <!-- banner slider -->
+    <link href="~/css/css_slider.css" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href=~/"css/font-awesome.min.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+</head>
+@if (Session["Success"] != null)
+{
+<script type="text/javascript">
+
+            window.onload = function () {
+                alert("@Session["Success"]");
+            };
+</script>Session.Remove("Success");
+            }
+<body>
+    <!-- header -->
+    <header>
+        <div class="container">
+            <div class="header d-lg-flex justify-content-between align-items-center">
+                <div class="header-agile">
+                    <h1>
+                        <a class="navbar-brand editContent logo" href="~/Welcome/Index">
+                            AIC
+                        </a>
+                    </h1>
+                </div>
+                <div class="nav_w3ls">
+                    <nav>
+                        <input class="menu-btn" type="checkbox" id="menu-btn" />
+                        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                        <ul class="menu">
+                            <li class="nav-item">@Html.ActionLink("Home", "Index", "Welcome", null, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("About", "Index", "Welcome", null, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Why Us?", "Index", "Welcome", null, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Login", "Index", "Login", null, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Register", "Register", "Login", null, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Contact Us", "Index", "Welcome", null, new { @class = "nav-link" })</li>
+
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- //header -->
+    <!-- banner -->
+    <div class="banner_w3lspvt">
+        <div class="csslider infinity" id="slider1">
+            <input type="radio" name="slides" id="slides_1" />
+            <input type="radio" name="slides" checked="checked" id="slides_2" />
+            <input type="radio" name="slides" id="slides_3" />
+            <ul class="banner_slide_bg">
+                <li>
+                    <div class="container">
+                        <div class="w3ls_banner_txt ml-0 text-left">
+                            <h3 class="w3ls_pvt-title text-white">Vivek Automobile Insurance Company Pvt Ltd</h3>
+                            @*<p class="text-white">100% clear water everyday.</p>*@
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="container">
+                        <div class="w3ls_banner_txt">
+                            <h3 class="w3ls_pvt-title">Vivek Automobile Automobile Insurance Company Pvt Ltd</h3>
+                            @*@<p>100% clear water everyday.</p>@*@
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="container">
+                        <div class="w3ls_banner_txt ml-0 text-left">
+                            <h3 class="w3ls_pvt-title text-white">Vivek Automobile Insurance Company Pvt Ltd</h3>
+                            @*@<p class="text-white">100% clear water everyday.</p>@*@
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="navigation">
+                <div>
+                    <label for="slides_1"></label>
+                    <label for="slides_2"></label>
+                    <label for="slides_3"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //banner -->
+    <!-- about-->
+    <section class="wthree-row py-md-5" id="about">
+        <div class="container py-lg-5">
+            <div class="row abbot-main py-lg-5 py-4">
+                <div class="col-lg-4 abbot-right mt-lg-0 mt-3">
+                    <img src="~/images/whatwedo.jpg" class="img-fluid img-thumbnail" alt="" style="height:355px;" />
+                </div>
+                <div class="offset-lg-1 col-lg-7 about-text-grid">
+                  @*  @<span class="sub-title">add your caption here</span>@
+                  *@  <h4 class="w3pvt-title">
+                        what we do
+                    </h4>
+                    <p class="mt-3">
+                        We provide Insurance to different categories of auto mobile that can be either Two Wheeler,
+                        Three wheeler ,Four wheeler etc. We are providing facilty to the customer where customer can
+                        easily get an insurance regarding their vechile in a very easy and convinient way. Customer
+                        has to just enter basic details and documents and after doing that they can buy poilices.
+
+                    </p>
+                    <p class="my-4">
+                        So basically we are the company that provides <b>Insurance Management System</b> to the customer
+                        and help them to experience the best application which can reduce their paper work process.
+                    </p>
+
+                    <a href="#portfolio" class="text-capitalize serv_link btn bg-theme scroll">view more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about -->
+    <!-- why us -->
+    <section class="wthree-row pb-md-5" id="why">
+        <div class="container pb-lg-5 pb-4">
+            <div class="row abbot-main flex-row-reverse">
+                <div class="offset-lg-1 col-lg-4 abbot-right mt-lg-0 mt-3">
+                    <img src="~/images/whyus1.jpg" class="img-fluid img-thumbnail" alt="" style="height:355px;" />
+                </div>
+                <div class="col-lg-7 about-text-grid">
+                   @* @<span class="sub-title">add your caption here</span>@
+                   *@ <h4 class="w3pvt-title">
+                        why us
+                    </h4>
+                    <p class="mt-3">
+                        Having auto mobile insurance is required by law in most states. If you are at fault
+                        in a car accident, the auto liability coverage required on your car insurance policy
+                        helps pay for covered losses, such as the other party's medical bills and damage to their
+                        vehicle or other property that results from the accident.
+                    </p>
+                    <p class="my-4">
+                        So here we come.We <b>IMS</b>  provides the customer with better plans and also
+                        the best part is customer doesnot have to take worries regarding their money which they claim
+                        after the maturity.We just credit the amount to their bank account with in 2-3 working days
+                    </p>
+
+                    <a href="#portfolio" class="text-capitalize serv_link btn bg-theme scroll">view more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //why us -->
+    <!-- portfolio -->
+    <section class="portfolio_wthree py-lg-5" id="portfolio">
+        <div class="container">
+            <div class="text-center py-md-5 py-4">
+                @*<span class="sub-title">add your caption here</span>
+                    <h4 class="w3pvt-title">
+                        our portfolio
+                    </h4>*@
+            </div>
+            <div class="row pb-5 text-center">
+                <div class="col-lg-4 col-sm-6 port-grid">
+                    <a href="#gal1"><img src="~/images/carinsurance.jpg" alt="news image" class="img-fluid img-thumbnail" style="height:235px;"></a>
+                </div>
+                <div class="col-lg-4 col-sm-6 port-grid">
+                    <a href="#gal2"><img src="~/images/whyus.jpg" alt="news image" class="img-fluid img-thumbnail" style="height:235px;"></a>
+                </div>
+                <div class="col-lg-4 col-sm-6 port-grid">
+                    <a href="#gal3"><img src="~/images/ins.jpg" alt="news image" class="img-fluid img-thumbnail" style="height:235px;"></a>
+                </div>
+                <div class="col-lg-4 col-sm-6 port-grid mt-lg-4">
+                    <a href="#gal4"><img src="~/images/steering-wheel-5471508_1920.jpg" alt="news image" class="img-fluid img-thumbnail" style="height:235px;"></a>
+                </div>
+                <div class="col-lg-4 col-sm-6 port-grid mt-lg-4">
+                    <a href="#gal5"><img src="~/images/protection.jpg" alt="news image" class="img-fluid img-thumbnail" style="height:235px; "></a>
+                </div>
+                <div class="col-lg-4 col-sm-6 port-grid mt-lg-4">
+                    <a href="#gal6"><img src="~/images/carrr.jpg" alt="news image" class="img-fluid img-thumbnail" style="height:235px;width:350px;"></a>
+                </div>
+                <div class="col-lg-4 col-sm-6 port-grid mt-lg-4">
+                    <a href="#gal7"><img src="~/images/umbrella.jpg" alt="news image" class="img-fluid img-thumbnail" style="height:235px;"></a>
+                </div>
+                <div class="col-lg-4 col-sm-6 port-grid mt-lg-4">
+                    <a href="#gal8"><img src="~/images/Quote.jpg" alt="news image" class="img-fluid img-thumbnail" style="height:235px;width:350px;"></a>
+                </div>
+                <div class="col-lg-4 col-sm-6 port-grid mt-lg-4">
+                    <a href="#gal9"><img src="~/images/bike.jpg" alt="news image" class="img-fluid img-thumbnail" style="height:235px;"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- stats -->
+    <section class="w3_pvt_stats py-md-5 py-4" id="stats">
+        <div class="container">
+            <div class="py-lg-5 w3-abbottom">
+                <span class="sub-title text-white">Vivek Automobile Insurance Company Pvt Ltd</span>
+                <h2 class="w3pvt-title">Experts in Providing General Motor Insurance</h2>
+                <div class="row py-sm-5 py-4">
+                    <div class="counter col-lg-3 col-6" data-aos="fade-up">
+                        <span class="fa fa-smile-o"></span>
+                        <div class="timer count-title count-number mt-2 text-white">Counting</div>
+                        <p class="count-text text-white">happy customers</p>
+                    </div>
+
+                    <div class="counter col-lg-3 col-6" data-aos="fade-up">
+                        <span class="fa fa-database"></span>
+                        <div class="timer count-title count-number mt-2 text-white">1</div>
+                        <p class="count-text text-white">Branch</p>
+                    </div>
+                    <div class="counter col-lg-3 col-6 mt-lg-0 mt-4" data-aos="fade-up">
+                        <span class="fa fa-users"></span>
+                        <div class="timer count-title count-number mt-2 text-white">14</div>
+                        <p class="count-text text-white">Categories of Insurance</p>
+                    </div>
+                    <div class="counter col-lg-3 col-6 mt-lg-0 mt-4" data-aos="fade-up">
+                        <span class="fa fa-trophy"></span>
+                        <div class="timer count-title count-number mt-2 text-white">10000+</div>
+                        <p class="count-text text-white">No of Customers served till date</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //stats -->
+    <!-- services -->
+    <!-- //services -->
+    <!-- contact -->
+    <div class="contact-wthree pt-lg-5 pt-4" id="contact">
+        <div class="container pt-md-5 pt-4">
+            <div class="text-center pb-4">
+                @* <span class="sub-title">add your caption here</span>*@
+                <h4 class="w3pvt-title">contact us</h4>
+            </div>
+            <div class="col-12 contact-left-w3layouts pt-md-4">
+                <div class="w3layouts-contact-top text-center">
+                    <p>Baidyanath Apartments,Jagdeo Path</p>
+                    <p class="mt-2">
+                        Bailey Road Patna , Bihar-800014
+
+                    </p>
+                </div>
+            </div>
+            <div class="row py-lg-5 py-sm-4 pt-4">
+                <div class="col-12 mb-4">
+                    <div class="text-center">
+                        <h6 class="sub-title">send us a note</h6>
+                    </div>
+                    <!-- register form grid -->
+                    <div class="register-top1">
+                        @using (Html.BeginForm())
+                        {
+            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-md-12 ">
+                                        <label>
+                                            Email
+                                        </label>
+                                        @Html.EditorFor(x => x.Email, new { htmlAttributes = new { @type = "email", @placeholder = "example@email.com", @class = "form-control" } })
+
+                                    </div>
+                                </div>
+                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>
+                                                            Your message
+                                                        </label>
+                                                        @Html.TextAreaFor(x => x.Message, new { @placeholder = "Type your message here", @class = "form-control" })
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                            <div class="row mt-3">
+                                                                <div class="col-md-12">
+                                                                    <button type="submit" class="btn btn-w3layouts btn-block  bg-theme text-white w-100 font-weight-bold text-uppercase">Send</button>
+                                                                </div>
+                                                            </div>}
+
+                    </div>
+                    <!--  //register form grid ends here -->
+                </div>
+            </div>
+        </div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.9871024609547!2d85.07188521486418!3d25.605344821304225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed57ca5c7147fb%3A0x2f4c3765889b9d67!2sBaidyanath%20apartments!5e0!3m2!1sen!2sin!4v1642653881407!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <!-- //contact -->
+    <footer class="bg-theme1">
+        <div class="container">
+            <div class="cpy-right">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="wthree-social">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-facebook-f icon_facebook"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-twitter icon_twitter"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-dribbble icon_dribbble"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-google-plus icon_g_plus"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-lg-right mt-lg-0 mt-4">
+                        <p class="text-white">
+                            © 2021 IMS. All rights reserved | Design by
+                            <a href="#AboutUs"> Vivek India Pvt Ltd.</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
+

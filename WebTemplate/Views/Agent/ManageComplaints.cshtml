@@ -1,0 +1,232 @@
+﻿@model List<WebTemplate.Models.Complaint>
+
+@{
+    ViewBag.Title = "ManageComplaints";
+    Layout = "~/Views/Shared/_LayoutAgent.cshtml";
+}
+
+@if (@Session["Success"] != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@Session["Success"]");
+            };
+    </script>
+    Session.Remove("Success");
+
+}
+<script type="text/javascript">
+    function DisableBackButton() {
+        window.history.forward();
+    }
+    setTimeout("DisableBackButton()", 0);
+    window.onunload = function () {
+        null
+    };
+</script>
+<style>
+
+
+    .card0 {
+        box-shadow: 0px 4px 8px 0px #757575;
+        border-radius: 0px
+    }
+
+    .card2 {
+        margin: 0px 40px
+    }
+
+    .logo {
+        width: 200px;
+        height: 100px;
+        margin-top: 20px;
+        margin-left: 35px
+    }
+
+    .image {
+        width: 360px;
+        height: 280px
+    }
+
+    .border-line {
+        border-right: 1px solid #EEEEEE
+    }
+
+    .facebook {
+        background-color: #3b5998;
+        color: #fff;
+        font-size: 18px;
+        padding-top: 5px;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        cursor: pointer
+    }
+
+    .twitter {
+        background-color: #1DA1F2;
+        color: #fff;
+        font-size: 18px;
+        padding-top: 5px;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        cursor: pointer
+    }
+
+    .linkedin {
+        background-color: #2867B2;
+        color: #fff;
+        font-size: 18px;
+        padding-top: 5px;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        cursor: pointer
+    }
+
+    .line {
+        height: 1px;
+        width: 43%;
+        background-color: #E0E0E0;
+        margin-top: 10px
+    }
+
+    .or {
+        width: 10%;
+        font-weight: bold
+    }
+
+    .text-sm {
+        font-size: 14px !important
+    }
+
+
+
+    input,
+    textarea {
+        padding: 10px 12px 10px 12px;
+        border: 1px solid lightgrey;
+        border-radius: 2px;
+        margin-bottom: 5px;
+        margin-top: 2px;
+        width: 100%;
+        box-sizing: border-box;
+        color: #2C3E50;
+        font-size: 14px;
+        letter-spacing: 1px
+    }
+
+        input:focus,
+        textarea:focus {
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            border: 1px solid #304FFE;
+            outline-width: 0
+        }
+
+    button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0
+    }
+
+    a {
+        color: inherit;
+        cursor: pointer
+    }
+
+    .btn-blue {
+        background-color: #1A237E;
+        width: 150px;
+        color: #fff;
+        border-radius: 2px
+    }
+
+        .btn-blue:hover {
+            background-color: #000;
+            cursor: pointer
+        }
+
+    .bg-blue {
+        color: #fff;
+        background-color: #1A237E
+    }
+</style>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+
+}
+<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+    <div class="card card0 border-0">
+
+        <div class="border border-primary rounded shadow mt-4 mx-4 p-3">
+            <button id="export" class="btn btn-primary">Export</button>
+
+            <table id="table" class="table table-hover rounded table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Message
+                        </th>
+                        <th>
+                            Created Date
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Message)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedDate)
+                            </td>
+
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+        <center>@Html.ActionLink("Add Complaints", "AddComplaints", new { @class = "btn btn-primary btn-block" })</center>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#table').dataTable(
+            {
+                "columns": [
+                    { "data": "Id" },
+                    { "data": "Message" },
+                    { "data": "CreatedDate" },
+                ]
+            });
+    });
+</script>
+<script src="../../Scripts/csvExport.js"></script>
+<script>
+    $("#export").click(function () {
+        $('table').csvExport();
+    });
+</script>
