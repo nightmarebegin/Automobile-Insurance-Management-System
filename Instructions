@@ -1,0 +1,4 @@
+1. Extract part and run .snl file.
+2. Create database named IMS in MS SQL Server.
+3. Then add desired details in users for admin and role id will be 3.
+
